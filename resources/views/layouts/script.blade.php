@@ -79,7 +79,7 @@
       //Initialize Select2 Elements
         $('.selectmodal').select2({
             theme: 'bootstrap4',
-            dropdownParent: $('.addRecouvrement')
+            dropdownParent: $('#addRecouvrement')
         })
 
         $('.select2').select2()

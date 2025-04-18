@@ -53,7 +53,7 @@ class RecouvrementController extends Controller
 
         Recouvrement::create($request->all());
 
-        return redirect()->back()->with("success", "Enregistrement éffectué avec succès!");
+        return redirect()->back()->with("message", "Enregistrement éffectué avec succès!");
     }
 
     /**

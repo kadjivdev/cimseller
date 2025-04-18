@@ -97,7 +97,7 @@
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group mb-3">
-                                                <select name="client_id" class="form-control form-select select2" required>
+                                                <select name="client_id" class="form-control form-select _selectmodal" required>
                                                     <option value="">Selectionnez un client</option>
                                                     @foreach($clients as $client)
                                                     <option value="{{$client->id}}">{{$client->raisonSociale}}</option>
@@ -146,6 +146,7 @@
                                             <th>Statut</th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody>
                                         @foreach ($recouvrements as $recouvrement)
                                         <tr>

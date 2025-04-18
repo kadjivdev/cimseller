@@ -70,7 +70,6 @@ class RecouvrementController extends Controller
 
         $recouvrements = Recouvrement::whereIn("id", $request->recouvrements);
         $recouvrements->update(["verified"=>true]);
-        // dd($recouvrements);
 
         return redirect()->route("recouvrement.index")->with("message", "Recouvrement vérifié avec succès!");
     }

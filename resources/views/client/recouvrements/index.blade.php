@@ -129,9 +129,11 @@
                         <div class="card-body">
                             <form action="{{route('recouvrement.verification')}}" method="post">
                                 <!--  -->
+                                @if(Auth::user()->roles()->where('libelle', 'ADMINISTRATEUR')->exists() || Auth::user()->roles()->where('libelle', 'CONTROLEUR')->exists())
                                 <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Vérifier</button>
                                 <!--  -->
                                 <br> <br>
+                                @endif
                                 @csrf
                                 <table id="example1" class="table table-bordered table-striped table-sm"
                                     style="font-size: 12px">
@@ -148,9 +150,13 @@
                                         @foreach ($recouvrements as $recouvrement)
                                         <tr>
                                             <td>
+                                                @if(Auth::user()->roles()->where('libelle', 'ADMINISTRATEUR')->exists() || Auth::user()->roles()->where('libelle', 'CONTROLEUR')->exists())
                                                 <div class="form-check text-center">
                                                     <input @if($recouvrement->verified) disabled checked @endif class="form-check-input form-control" style="width: 20px;" type="checkbox" name="recouvrements[]" value="{{$recouvrement->id}}" id="checkIndeterminate">
                                                 </div>
+                                                @else
+                                                ---
+                                                @endif
                                             </td>
                                             <td class="ml-5 pr-5">{{ $recouvrement->client->raisonSociale }}</td>
                                             <td class="text-center">

@@ -13,11 +13,24 @@ class Recouvrement extends Model
     protected $fillable = [
         "client_id",
         "comments",
-        "verified"
+        "verified",
+        "verified_at",
+        "verified_by",
+        "user_id"
     ];
 
     function client(): BelongsTo
     {
         return $this->belongsTo(Client::class, "client_id");
+    }
+
+    function user() {
+        
+        return $this->belongsTo(User::class, "user_id");
+    }
+
+    function verifiedBy() {
+        
+        return $this->belongsTo(User::class, "verified_by");
     }
 }

@@ -51,7 +51,8 @@ class RecouvrementController extends Controller
             "comments" => "Le Commenataire est réquis",
         ]);
 
-        Recouvrement::create($request->all());
+        $data = array_merge($request->all(), ["user_id" => auth()->user()->id]);
+        Recouvrement::create($data);
 
         return redirect()->back()->with("message", "Enregistrement éffectué avec succès!");
     }
@@ -69,7 +70,11 @@ class RecouvrementController extends Controller
         ]);
 
         $recouvrements = Recouvrement::whereIn("id", $request->recouvrements);
-        $recouvrements->update(["verified"=>true]);
+        $recouvrements->update([
+            "verified" => true,
+            "verified_by" => auth()->user()->id,
+            "verified_at" => now(),
+        ]);
 
         return redirect()->route("recouvrement.index")->with("message", "Recouvrement vérifié avec succès!");
     }
